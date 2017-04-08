@@ -90,7 +90,7 @@ CREATE TABLE Discussion_Forum
 (
   ThreadID INT NOT NULL,
   MessageId INT NOT NULL,
-  PRIMARY KEY (ThreadID),
+  PRIMARY KEY (ThreadID, MessageID),
   FOREIGN KEY (MessageId) REFERENCES Message_Content(MessageId)
 );
 
