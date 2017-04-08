@@ -7,15 +7,15 @@ CREATE TABLE Pickup_Student_Details
   ContactNo VARCHAR(20) NOT NULL,
   EmailID VARCHAR(20) NOT NULL,
   Gender INT NOT NULL,
-  ArrivalDate_Time DATETIME NOT NULL,
+  ArrivalDate DATETIME NOT NULL,
   PortOfEntry VARCHAR(50) NULL,
-  FlightBoradingCity VARCHAR(50) NOT NULL,
-  FlightNumber_And_AirLine VARCHAR(30) NOT NULL,
+  FlightBoardingCity VARCHAR(50) NOT NULL,
+  FlightDetails VARCHAR(30) NOT NULL,
   NumberOfBags INT NOT NULL,
   EmergencyContactName VARCHAR(50) NOT NULL,
-  EmergencyContactAddress VARCHAR(100) NULL,
+  EmergencyContactAddress VARCHAR(255) NULL,
   EmergencyContactEmailID VARCHAR(50) NOT NULL,
-  EmergencyConatctPhoneNumber VARCHAR(20) NOT NULL,
+  EmergencyContactNumber VARCHAR(20) NOT NULL,
   SuperShuttleStatus INT NOT NULL,
   AccompanyingPeople INT NOT NULL,
   PRIMARY KEY (StudentID)
@@ -30,23 +30,27 @@ CREATE TABLE Volunteer_Details
   EmailID VARCHAR(50) NOT NULL,
   VolunteerService INT NOT NULL,
   TShirtSize INT NULL,
-  ContactAddress VARCHAR(100) NOT NULL,
-  FromDate1 DATETIME NOT NULL,
-  ToDate1 DATETIME NOT NULL,
-  FromDate2 DATETIME NULL,
-  ToDate2 DATETIME NULL,
-  FromDate3 DATETIME NULL,
-  ToDate3 DATETIME NULL,
+  Address VARCHAR(255) NOT NULL,
   NoOfDays INT NULL,
   NoOfPeople INT NULL,
   PRIMARY KEY (VolunteerID)
+);
+
+CREATE TABLE DateRanges
+(
+ VolunteerID INT NOT NULL,
+ FromDate DATETIME NOT NULL,
+ ToDate DATETIME NOT NULL,
+ TypeOfService INT NOT NULL,
+ PRIMARY KEY(VolunteerID,FromDate,ToDate,TypeOfService),
+ FOREIGN KEY (VolunteerID) REFERENCES Volunteer_Details(VolunteerID)
 );
 
 CREATE TABLE Student_Volunteer_Mapping
 (
   StudentID INT NOT NULL,
   VolunteerID INT NOT NULL,
-  Service_Provided INT NOT NULL,
+  ServiceProvided INT NOT NULL,
   PRIMARY KEY (Service_Provided, VolunteerID, StudentID),
   FOREIGN KEY (VolunteerID) REFERENCES VolunteerDetails(VolunteerID),
   FOREIGN KEY (StudentID) REFERENCES Pickup_Student_Details(StudentID)
@@ -63,7 +67,7 @@ CREATE TABLE Apartment_Details
 (
   AptID INT NOT NULL,
   Name VARCHAR(50) NOT NULL,
-  ContactAddress VARCHAR(50) NOT NULL,
+  Address VARCHAR(50) NOT NULL,
   Photos VARBINARY(MAX) NULL,
   Rent MONEY NOT NULL,
   OtherExpenses MONEY NOT NULL,
@@ -78,39 +82,45 @@ CREATE TABLE Apartment_Details
 
 CREATE TABLE Message_Content	
 (
-  MessageId INT NOT NULL,
+  MessageID INT NOT NULL,
+  ThreadID INT NOT NULL,
+  GroupID INT NOT NULL,
   AuthorID VARCHAR(50) NOT NULL,
   MessageSubject VARCHAR(100) NOT NULL,
   Body VARCHAR(200) NOT NULL,
   MessageDate DATETIME NOT NULL,
-  PRIMARY KEY (MessageId)
+  PRIMARY KEY (MessageID),
+  FOREIGN KEY (GroupID) REFERENCES Groups(GroupID)
 );
 
 CREATE TABLE Discussion_Forum
 (
+  GroupID INT NOT NULL,
   ThreadID INT NOT NULL,
-  MessageId INT NOT NULL,
-  PRIMARY KEY (ThreadID),
-  FOREIGN KEY (MessageId) REFERENCES Message_Content(MessageId)
+  PRIMARY KEY (GroupID,ThreadID),
+  FOREIGN KEY (GroupID) REFERENCES Groups(GroupID)
 );
 
-CREATE TABLE Sub_Leases
+CREATE TABLE SubLeases
 (
   SubLeaseID INT NOT NULL,
   AptID INT NOT NULL,
-  AptDescription VARCHAR(200) NOT NULL,
-  AdvertiserName VARCHAR(50) NOT NULL,
-  PhoneNumber VARCHAR(20) NOT NULL,
-  EmailID VARCHAR(50) NOT NULL,
-  LeaseEndDate DATETIME NOT NULL,
+  Description VARCHAR(200) NOT NULL,
   DateOfAvailability DATETIME NOT NULL,
-  Smoking INT NOT NULL,
-  Drinking INT NOT NULL,
-  VegNonVeg INT NOT NULL,
+  LeaseEndDate DATETIME NOT NULL,
   Budget INT NOT NULL,
-  SpokenLanguages VARCHAR(20) NOT NULL,
   PRIMARY KEY (SubLeaseID),
   FOREIGN KEY (AptID) REFERENCES Apartment_Details(AptID)
+);
+
+CREATE TABLE Student_SubLease_Mapping
+(
+	StudentID INT NOT NULL,
+	SubLeaseID INT NOT NULL,
+    PRIMARY KEY(StudentID,SubLeaseID)
+    FOREIGN KEY (StudentID) REFERENCES Student_Profile(StudentID),
+    FOREIGN KEY (SubLeaseID) REFERENCES Student_Profile(SubLeases)
+    
 );
 
 CREATE TABLE Groups
@@ -133,20 +143,18 @@ CREATE TABLE Student_Profile
   ContactNo VARCHAR(20) NOT NULL,
   EmailID VARCHAR(50) NOT NULL,
   Gender INT NOT NULL,
-  Smoking INT NOT NULL,
-  Drinking INT NOT NULL,
-  FoodPreferences INT NOT NULL,
-  PurposeOfRegistering INT NOT NULL,
+  SmokingHabit INT NOT NULL,
+  DrinkingHabit INT NOT NULL,
+  FoodHabits INT NOT NULL,
   LoginPassword VARCHAR(20) NOT NULL,
-  MajorOfStudies VARCHAR(20) NOT NULL,
-  NativeState VARCHAR(30) NOT NULL,
+  Major VARCHAR(20) NOT NULL,
+  Native VARCHAR(30) NOT NULL,
   GroupID INT NULL,
-  Smoking_Pref INT NOT NULL,
-  Drinking_Pref INT NOT NULL,
-  FoodPreferences_Pref INT NOT NULL,
-  Budget_Pref INT NOT NULL,
-  NumberOfRoommates_Pref INT NOT NULL,
-  SpeakingLanguages_Pref INT NOT NULL,
+  SmokingPref INT NOT NULL,
+  DrinkingPref INT NOT NULL,
+  FoodPref INT NOT NULL,
+  BudgetPref INT NOT NULL,
+  NoOfRoommatesPref INT NOT NULL,
   PRIMARY KEY (StudentID),
   FOREIGN KEY (GroupID) REFERENCES Groups(GroupID)
 );
@@ -162,6 +170,15 @@ CREATE TABLE Notifications_Req_Tracker
   FOREIGN KEY (ToGroup) REFERENCES Groups(GroupID),
   FOREIGN KEY (ToStudent) REFERENCES Student_Profile(StudentID),
   FOREIGN KEY (FromStudent) REFERENCES Student_Profile(StudentID)
+);
+
+CREATE TABLE Languages
+(
+	StudentID INT NOT NULL,
+    Language VARCHAR(50) NOT NULL,
+	Type INT NOT NULL
+    PRIMARY KEY(StudentID,Language,Type)
+    FOREIGN KEY (StudentID) REFERENCES Student_Profile(StudentID)
 );
 
 
