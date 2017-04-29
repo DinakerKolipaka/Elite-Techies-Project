@@ -149,7 +149,6 @@ CREATE TABLE Student_Profile
   SmokingHabit INT NULL,
   DrinkingHabit INT NULL,
   FoodHabits INT NULL,
-  Budget Money NULL,
   LoginPassword VARCHAR(255) NOT NULL,
   Major VARCHAR(50) NOT NULL,
   Native VARCHAR(50) NOT NULL,
