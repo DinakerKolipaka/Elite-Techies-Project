@@ -116,8 +116,9 @@ CREATE TABLE Groups
 
 CREATE TABLE Discussion_Forum
 (
-  GroupID INT NOT NULL,
   ThreadID INT NOT NULL IDENTITY,
+  GroupID INT NOT NULL,
+  ThreadName VARCHAR(50) NULL,
   FOREIGN KEY (GroupID) REFERENCES Groups(GroupID),
   PRIMARY KEY (GroupID,ThreadID)
   );
@@ -128,7 +129,6 @@ CREATE TABLE Message_Content
   ThreadID INT NOT NULL,
   GroupID INT NOT NULL,
   AuthorID VARCHAR(50) NOT NULL,
-  MessageSubject VARCHAR(100) NOT NULL,
   Body VARCHAR(MAX) NOT NULL,
   MessageDate DATETIME NOT NULL,
   PRIMARY KEY (MessageID),
@@ -148,7 +148,6 @@ CREATE TABLE Student_Profile
   SmokingHabit INT NULL,
   DrinkingHabit INT NULL,
   FoodHabits INT NULL,
-  Budget Money NULL,
   LoginPassword VARCHAR(255) NOT NULL,
   Major VARCHAR(50) NOT NULL,
   Native VARCHAR(50) NOT NULL,
@@ -156,7 +155,7 @@ CREATE TABLE Student_Profile
   SmokingPref INT NULL,
   DrinkingPref INT NULL,
   FoodPref INT NULL,
-  BudgetPref Money NULL,
+  BudgetPref INT NULL,
   NoOfRoommatesPref INT NULL,
   PRIMARY KEY (StudentID),
   FOREIGN KEY (GroupID) REFERENCES Groups(GroupID)
