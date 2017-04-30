@@ -1,7 +1,5 @@
---use ISADatabase;
+use ISADatabase;
 
---if object_id('Pickup_Students') is not null
---drop proc dbo.Pickup_Students;
 if object_id('Pickup_Students') is not null
 drop procedure Pickup_Students;
 go
@@ -17,7 +15,7 @@ create procedure Pickup_Students
 @FlightDetails varchar(30),
 @NumberOfBags int,
 @EmergencyContactName varchar(50),
-@EmergencyContactAddress varchar(255) = null,
+@EmergencyContactAddress varchar(255),
 @EmergencyContactEmailID varchar(50),
 @EmergencyContactNumber varchar(20),
 @SuperShuttleStatus int,

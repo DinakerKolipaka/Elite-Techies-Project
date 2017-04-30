@@ -1,9 +1,9 @@
 --use ISADatabase;
 
-if object_id('Apt_Details') is not null
-drop proc dbo.Apt_Details;
+if object_id('Apt_Details_Insert') is not null
+drop proc dbo.Apt_Details_Insert;
 go
-create procedure Apt_Details  
+create procedure Apt_Details_Insert  
 @Name varchar(50),
 @Address varchar(50),
 @Photos varbinary(max)=null,
