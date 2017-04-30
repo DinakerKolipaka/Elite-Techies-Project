@@ -5,7 +5,6 @@
 --use ISADatabase
 
 --SuperShuttleStatus 0 Yes; 1 No
-
 CREATE TABLE Pickup_Student_Details
 (
   StudentID INT NOT NULL IDENTITY,

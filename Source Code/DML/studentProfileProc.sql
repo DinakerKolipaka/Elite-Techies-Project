@@ -11,6 +11,7 @@ CREATE PROC studentProfileProc
   @SmokingHabit INT,
   @DrinkingHabit INT,
   @FoodHabits INT,
+  @Budget Money,
   @LoginPassword VARCHAR(20),
   @Major VARCHAR(20),
   @Native VARCHAR(30),
@@ -25,7 +26,7 @@ CREATE PROC studentProfileProc
 AS
 begin
 	insert into Student_Profile values ( @StudentID,@Firstname,@LastName,@ContactNo,@EmailID,@Gender,
-					@SmokingHabit,@DrinkingHabit,@FoodHabits,@LoginPassword,@Major,
+					@SmokingHabit,@DrinkingHabit,@FoodHabits,@Budget,@LoginPassword,@Major,
 					@Native,@GroupID,@SmokingPref,@DrinkingPref,@FoodPref,@BudgetPref,@NoOfRoommatesPref);
 	insert into languages values(@StudentID,@lang,@type);
 	
@@ -33,7 +34,7 @@ end
 
 EXEC studentProfileProc @StudentID=6,@Firstname='Hermoine',@LastName='Granger',@ContactNo='480-511-3019',
 						@EmailID='hermoine.granger@hogwarts.edu',@Gender=1,
-					@SmokingHabit=0,@DrinkingHabit=1,@FoodHabits=3,@LoginPassword='Granger',@Major='CSE',
+					@SmokingHabit=0,@DrinkingHabit=1,@FoodHabits=3,@Budget=250,@LoginPassword='Granger',@Major='CSE',
 					@Native='Surrey',@GroupID=NULL,@SmokingPref=3,@DrinkingPref=2,@FoodPref=3,@BudgetPref=200,@NoOfRoommatesPref=5
 					,@lang='English',@type=0;
 
