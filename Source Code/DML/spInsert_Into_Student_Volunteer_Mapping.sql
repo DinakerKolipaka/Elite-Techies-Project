@@ -1,4 +1,4 @@
-if exists(select object_id ('spInsertIntoStudentVolunteerMapping'))
+if object_id ('spInsertIntoStudentVolunteerMapping') is not null
 drop proc spInsertIntoStudentVolunteerMapping;
 go
 create proc spInsertIntoStudentVolunteerMapping
@@ -9,5 +9,5 @@ as
 	begin
 	insert into Student_Volunteer_Mapping 
 		(StudentID, VolunteerID, ServiceProvided)
-	values (@StudentID, @VolunteerID, @ServiceProvided)
+	values (@StudentID, @VolunteerID, @ServiceProvided);
 	end

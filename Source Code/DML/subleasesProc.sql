@@ -1,9 +1,8 @@
 use ISADatabase
-if exists(select object_id('subleasesProc'))
-drop proc subleasesProc
+if object_id('spInsert_Subleases') is not null
+drop proc spInsert_Subleases
 go
-create proc subleasesProc
-	@SubleaseID INT,
+create proc spInsert_Subleases
 	@AptID INT,
 	@Description VARCHAR(200),
 	@DateOfAvailability DATETIME,
@@ -12,12 +11,15 @@ create proc subleasesProc
 	@StudentID INT
 as
 begin
-	insert into Subleases values (@SubleaseID,@AptID,@Description,@DateOfAvailability,@LeaseEndDate,
+	insert into Subleases values (@AptID,@Description,@DateOfAvailability,@LeaseEndDate,
 							@Budget);
+
+	declare @SubleaseID INT = (select SubleaseID from SubLeases where AptID = @AptID)
 	insert into Student_SubLease_Mapping values(@StudentID,@SubleaseID);
 end
 
-EXEC subleasesProc @SubleaseID=1,@AptID=1,@Description='A great apartment',@DateOfAvailability='2017-05-01',
+
+EXEC subleasesProc @AptID=1,@Description='A great apartment',@DateOfAvailability='2017-05-01',
 	@LeaseEndDate='2017-08-10',@Budget=100,@StudentID=2
 
 select * from subleases

@@ -47,17 +47,19 @@ values
 (17, 'English', 1),
 (17, 'French', 1),
 (17, 'French', 2),
-(17, 'English', 1),
+(17, 'English', 2),
 (18, 'Hindi', 1),
 (18, 'Kannada', 1),
 (18, 'English', 1),
 (18, 'Telugu', 2),
 (18, 'Kannada', 2),
 (19, 'English', 1), 
-(19, 'English', 1), 
-(20, 'English', 2), 
-(20, 'English', 2)
+(19, 'English', 2), 
+(20, 'English', 1), 
+(20, 'English', 2);
 
+
+--select * from Languages
 /*
 Notes:
 

@@ -23,7 +23,9 @@ values
 ('Pansy', 'Parkinson', '488-511-3323', 'pansy.parkinson@hogwarts.edu', 1, 0, 1, 2, 'Parkinson', 'CE', 'Essex', Null, 3, 1, 1, 350, 4),  
 ('Justin', 'Finch', '488-511-3342', 'justin.finch@hogwarts.edu', 0, 1, 1, 3, 'Finch', 'CE', 'Lancashire', Null, 1, 3, 2, 300, 4), 
 ('Blaise', 'Zabini', '488-511-3361', 'blaise.zabini@hogwarts.edu', 0, 1, 0, 3, 'Zabini', 'Civil', 'Surrey', Null, 1, 2, 2, 400, 4 ), 
-('Morag', 'MacDougal', '488-511-3380', 'morag.macdougal@hogwarts.edu', 0, 1, 0, 1, 'MacDougal', 'CSE', 'Cleveland', Null, 1, 1, 1, 500, 2) 
+('Morag', 'MacDougal', '488-511-3380', 'morag.macdougal@hogwarts.edu', 0, 1, 0, 1, 'MacDougal', 'CSE', 'Cleveland', Null, 1, 1, 1, 500, 2);
+
+select * from Student_Profile 
 
 
 

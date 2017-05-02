@@ -1,6 +1,6 @@
-use isadatabase
-if exists(select object_id('searchPeopleProc'))
+if object_id('searchPeopleProc') is not null
 drop proc searchPeopleProc
+go
 create procedure searchPeopleProc 
 	@pfname varchar(50)=null,
 	@plname varchar(50)=null,
@@ -26,15 +26,15 @@ begin
 	             @drinkingpref INT=null,
 	             @foodpref INT=null,
 	             @numroommatespref int=null	'
-	set @sql='select FirstName, LastName, Major, Gender, Native, Budget, SmokingHabit, 
-	DrinkingHabit, FoodHabits, NoOfRoommatesPref from Student_Profile'+
+	set @sql='select FirstName, LastName, Major, Gender, Native, BudgetPref, SmokingHabit, 
+	DrinkingHabit, FoodHabits, NoOfRoommatesPref from Student_Profile '+
 	'where 
 	(FirstName=@fname) or
 	(LastName=@lname) or
 	(Major=@major) or
 	(Gender=@gender) or
 	(Native=@native) or
-	(Budget=@budgetpref) or
+	(BudgetPref=@budgetpref) or
 	(SmokingHabit=@smokingpref) or
 	(DrinkingHabit=@drinkingpref) or
 	(FoodHabits=@foodpref) or
@@ -43,9 +43,10 @@ begin
 
 	execute sp_executesql @sql,@params,@fname=@pfname,@lname=@plname,@major=@pmajor,@gender=@pgender,
 	@native=@pnative,@budgetpref=@pbudgetpref,@smokingpref=@psmokingpref,@drinkingpref=@pdrinkingpref,
-	@foodpref=@pfoodpref,@numroommatespref@pnumroommatespref	
+	@foodpref=@pfoodpref,@numroommatespref=@pnumroommatespref	
 
 
 end
 
-execute searchByPeople
+execute searchPeopleProc 'harry', null, null, null, null, 300.00
+select BudgetPref from Student_Profile

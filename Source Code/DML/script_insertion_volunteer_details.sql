@@ -1,3 +1,5 @@
+/*Inserting data into Volunteer_Details*/
+
 insert into Volunteer_Details 
 (FirstName, LastName, ContactNo, EmailID, VolunteerService, TShirtSize, Address,  NoOfDays, NoOfPeople)
 values
@@ -10,4 +12,4 @@ values
 ('Sybill', 'Trelawney', '480-135-4098', 'sybill.trelawney@asu.edu', 0, 0, '1268 E University Drive, Apt 313, Tempe, 85281', 1, 1),
 ('Gilderoy', 'Lockhart', '480-653-4390', 'gilderoy.lockhart@asu.edu', 1, 1, '1263 E University Drive, Apt 512, Tempe, 85281', 2, 2),
 ('Horace', 'Slughorn', '480-414-7509', 'horace.slughorn@asu.edu', 2, 3, '1266 E University Drive, Apt 987, Tempe, 85281', 3, 1),
-('Alastor', 'Moody', '480-612-7498', 'alastor.moody@asu.edu', 0, 3, '1269 E University Drive, Apt 1055, Tempe, 85281', 1, 2)
+('Alastor', 'Moody', '480-612-7498', 'alastor.moody@asu.edu', 0, 3, '1269 E University Drive, Apt 1055, Tempe, 85281', 1, 2);

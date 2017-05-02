@@ -1,7 +1,7 @@
-if object_id ('spInsertIntoVolunteer_Details') IS NOT NULL
-drop proc spInsertIntoVolunteer_Details;
+if object_id ('spInsert_Volunteer_Details') IS NOT NULL
+drop proc spInsert_Volunteer_Details;
 go
-create proc spInsertIntoVolunteer_Details
+create proc spInsert_Volunteer_Details
 	@FirstName VARCHAR(50),
 	@LastName VARCHAR(50),
 	@ContactNo VARCHAR(20),
@@ -11,10 +11,9 @@ create proc spInsertIntoVolunteer_Details
 	@Address VARCHAR(255),
 	@NoOfDays INT,
 	@NoOfPeople INT
-
 as
 	begin
 	insert into Volunteer_Details 
 		(FirstName, LastName, ContactNo, EmailID, VolunteerService, TShirtSize, Address, NoOfDays, NoOfPeople)
-	values (@FirstName, @LastName, @ContactNo, @EmailID, @VolunteerService, @TShirtSize, @Address, @NoOfDays, @NoOfPeople)
+	values (@FirstName, @LastName, @ContactNo, @EmailID, @VolunteerService, @TShirtSize, @Address, @NoOfDays, @NoOfPeople);
 	end

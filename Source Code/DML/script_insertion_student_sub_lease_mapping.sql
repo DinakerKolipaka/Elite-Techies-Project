@@ -1,11 +1,10 @@
-insert into Student_SubLease_Mapping
-(StudentID, SubLeaseID)
+insert into Student_SubLease_Mapping(StudentID, SubLeaseID)
 values
 (4, 1),
 (6, 2),
 (8, 3),
 (12, 4),
-(16, 5)
+(16, 5);
 
 
 

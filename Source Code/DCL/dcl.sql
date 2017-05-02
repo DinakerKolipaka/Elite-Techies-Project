@@ -1,10 +1,10 @@
-use isadatabase
+--use isadatabase
 
 create login Dinaker with password='dinaker' must_change,check_expiration=on,
 	check_policy=on,default_database=ISADatabase;
 
 create user Dinaker for login Dinaker;
-drop role PickupRole
+--drop role PickupRole
 create role PickupRole;
 
 grant select,alter,insert,update,delete on Pickup_Student_details to PickupRole;
@@ -13,19 +13,13 @@ grant select,alter,insert,update,delete on Volunteer_Details to PickupRole;
 grant select,alter,insert,update,delete on Date_Ranges to PickupRole;
 
 alter role PickupRole add member Dinaker
-	
-
-create login Deepika with password='deepika' must_change,check_expiration=on,
-	check_policy=on,default_database=ISADatabase;
-
-create user Deepika for login Deepika;
 
 create login Anusha with password='anusha' must_change,check_expiration=on,
 	check_policy=on,default_database=ISADatabase;
 
 create user Anusha for login Anusha;
 
-drop role RoommateSearchRole
+--drop role RoommateSearchRole
 create role RoommateSearchRole;
 
 grant select,alter,insert,update,delete on Languages to RoommateSearchRole;
@@ -39,12 +33,19 @@ grant select,alter,insert,update,delete on Notifications_Req_Tracker to Roommate
 grant select,alter,insert,update,delete on Discussion_Forum to RoommateSearchRole;
 grant select,alter,insert,update,delete on Message_Content to RoommateSearchRole;
 
+alter role RoommateSearchRole add member Anusha
+
 create login Administrator with password='administrator' must_change,check_expiration=on,
 	check_policy=on,default_database=ISADatabase;
 
 create user Administrator for login Administrator;
 
-drop role AdminRole
+create login Deepika with password='deepika' must_change,check_expiration=on,
+	check_policy=on,default_database=ISADatabase;
+
+create user Deepika for login Deepika;
+
+--drop role AdminRole
 create role AdminRole;
 
 grant select,alter,insert,update,delete on Pickup_Student_details to AdminRole;
@@ -63,4 +64,5 @@ grant select,alter,insert,update,delete on Discussion_Forum to AdminRole;
 grant select,alter,insert,update,delete on Message_Content to AdminRole;
 
 alter role AdminRole add member Administrator
+alter role AdminRole add member Deepika
 

@@ -1,5 +1,5 @@
-use isadatabase;
-
+if object_id('fnDateRanges') is not null
+drop function fnDateRanges
 go
 create function fnDateRanges(@sid int)
 returns @temptable table
@@ -13,14 +13,7 @@ returns @temptable table
 as
 begin
 	declare @arrdate datetime
-	/*declare @temptable table
-	(
-		volunteerid int,
-		firstname varchar(50),
-		lastname varchar(50),
-		fromdate datetime,
-		todate datetime
-	)*/
+
 	set @arrdate=(select arrivaldate from pickup_student_details where studentid=@sid);
 	declare @volunteerid int,@fromdate datetime,@todate datetime
 	declare dateCursor cursor for select volunteerid,fromdate,todate from date_ranges;

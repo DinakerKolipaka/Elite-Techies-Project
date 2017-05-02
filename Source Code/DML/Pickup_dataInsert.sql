@@ -135,7 +135,7 @@ insert into Pickup_Student_Details
 EmergencyContactName,EmergencyContactAddress,EmergencyContactEmailID,EmergencyContactNumber,SuperShuttleStatus,AccompanyingPeople)
 values
 ('Blaise','Zabini','488-511-3361','blaise.zabini@hogwarts.edu',0,'2017-07-28 6:30:00','Dallas','Edinburgh','EY6798 Etihad Airways',	
-3,'Bob Zabini',	1266 E University Drive, Apt 1032, Tempe, 85281	bob.zabini@hogwarts.edu	612-102-4095	0	0);
+3,'Bob Zabini',	'1266 E University Drive, Apt 1032, Tempe, 85281',	'bob.zabini@hogwarts.edu',	'612-102-4095',	0,	0);
 
 insert into Pickup_Student_Details
 (FirstName,LastName,ContactNo,EmailID,Gender,ArrivalDate,PortOfEntry,FlightBoardingCity,FlightDetails,NumberOfBags,
@@ -143,3 +143,5 @@ EmergencyContactName,EmergencyContactAddress,EmergencyContactEmailID,EmergencyCo
 values
 ('Morag','MacDougal','488-511-3380','morag.macdougal@hogwarts.edu',0,'2017-08-04 6:30:00','Atlanta','Glasgow','AI1234 Air India',
 3,'Dorothy MacDouglas','1269 E University Drive, Apt 143, Tempe, 85281','dorothy.macdouglas@hogwarts.edu','612-343-3902',1,1);
+
+

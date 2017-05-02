@@ -1,4 +1,4 @@
-if exists(select object_id ('spSearchByGroups'))
+if object_id ('spSearchByGroups') is not null
 drop proc spSearchByGroups;
 go
 create proc spSearchByGroups @groupid int

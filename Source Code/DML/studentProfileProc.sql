@@ -1,8 +1,8 @@
 use ISADatabase
-if exists(select object_id('studentProfileProc'))
+if object_id('studentProfileProc') is not null
 drop proc studentProfileProc
+go
 CREATE PROC studentProfileProc
-  @StudentID INT,
   @Firstname VARCHAR(50),
   @LastName VARCHAR(50),
   @ContactNo VARCHAR(20),
@@ -25,9 +25,14 @@ CREATE PROC studentProfileProc
   @type int
 AS
 begin
-	insert into Student_Profile values ( @StudentID,@Firstname,@LastName,@ContactNo,@EmailID,@Gender,
-					@SmokingHabit,@DrinkingHabit,@FoodHabits,@Budget,@LoginPassword,@Major,
+	insert into Student_Profile(Firstname,LastName,ContactNo,EmailID,Gender,
+					SmokingHabit,DrinkingHabit,FoodHabits,LoginPassword,Major,
+					Native,GroupID,SmokingPref,DrinkingPref,FoodPref,BudgetPref,NoOfRoommatesPref) 
+	values (@Firstname,@LastName,@ContactNo,@EmailID,@Gender,
+					@SmokingHabit,@DrinkingHabit,@FoodHabits,@LoginPassword,@Major,
 					@Native,@GroupID,@SmokingPref,@DrinkingPref,@FoodPref,@BudgetPref,@NoOfRoommatesPref);
+
+	declare @StudentID INT = (select StudentID from Student_Profile where EmailID = @EmailID)
 	insert into languages values(@StudentID,@lang,@type);
 	
 end

@@ -1,4 +1,4 @@
-if exists(select object_id ('spDelete_Req_Notification_Req_Tracker'))
+if object_id ('spDelete_Req_Notification_Req_Tracker') is not null
 drop proc spDelete_Req_Notification_Req_Tracker;
 go
 create proc spDelete_Req_Notification_Req_Tracker

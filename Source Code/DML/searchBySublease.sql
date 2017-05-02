@@ -1,6 +1,6 @@
-use isadatabase
-if exists(select object_id('searchSubleasesProc'))
+if object_id('searchSubleasesProc') is not null
 drop proc searchSubleasesProc
+go
 create procedure searchSubleasesProc 
 	@pdoa datetime=null,
 	@pbud int=null,
@@ -22,12 +22,6 @@ begin
 	(Apartment_Details.NoOfRoomsAvailable=@avail) or
 	(Apartment_Details.MaxOccupancy=@max)'
 
-	/*
-	insert into apartment_details values(3,'12Fifty5','1255 E Univ',NULL,200,20,'2B2B','1000',2,5,'Extra')
-	select * from apartment_details
-	insert into subleases values(3,3,'12Fifty5 Rocks!!!','2017-08-01','2017-10-01',300)
-	select * from subleases
-	*/
 	execute sp_executesql @sql,@params,@doa=@pdoa,@bud=@pbud,@name=@pname,@apttype=@papttype,@avail=@pavail,@max=@pmax
 
 end

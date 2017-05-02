@@ -1,9 +1,9 @@
 use ISADatabase
 
-if object_id('Message_Cont') is not null
-drop procedure Message_Cont;
+if object_id('spInsert_Message_Cont') is not null
+drop procedure spInsert_Message_Cont;
 go
-create procedure Message_Cont
+create procedure spInsert_Message_Cont
 @ThreadID int,
 @AuthorID varchar(50),
 @Body varchar(200)
