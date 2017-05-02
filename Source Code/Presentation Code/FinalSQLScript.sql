@@ -478,9 +478,9 @@ values(5,'I am a senior looking for someone to take over my lease','2017-08-03',
 
 /*Inserting Data into Groups*/
 
-insert into Groups(GroupName,GroupStatus,AptID,ThreadID) values ('Gryffindor',1,1,null);
-insert into Groups(GroupName,GroupStatus,AptID,ThreadID) values ('Ravenclaw',0,2,null);	
-insert into Groups(GroupName,GroupStatus,AptID,ThreadID) values ('Hufflepuff',0,3,null);
+insert into Groups(GroupName,GroupStatus,AptID) values ('Gryffindor',1,1);
+insert into Groups(GroupName,GroupStatus,AptID) values ('Ravenclaw',0,2);	
+insert into Groups(GroupName,GroupStatus,AptID) values ('Hufflepuff',0,3);
 
 
 /*Inserting Data into Discussion_Forum*/
@@ -786,13 +786,12 @@ go
 create proc spInsert_Groups
 	@GroupStatus INT,
 	@GroupNameName VARCHAR(50),
-	@AptID INT,
-	@ThreadID INT
+	@AptID INT
 as
 	begin
 		insert into Groups 
-			(GroupStatus, GroupName, AptID, ThreadID)
-		values (@GroupStatus, @GroupNameName, @AptID, @ThreadID)
+			(GroupStatus, GroupName, AptID)
+		values (@GroupStatus, @GroupNameName, @AptID)
 	end
 
 /*Stored Procedure for Insert into Message_Content*/
